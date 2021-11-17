@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:2.0.0-sdk AS build
+FROM microsoft/dotnet:5.0.0-sdk AS build
 
 ARG BUILDCONFIG=RELEASE
 
@@ -11,7 +11,7 @@ COPY . .
 RUN dotnet publish -c $BUILDCONFIG -o out
 
 # build runtime image
-FROM microsoft/dotnet:2.0.0-runtime 
+FROM microsoft/dotnet:5.0.0-runtime 
 WORKDIR /app
 COPY --from=build /build/out ./
 
