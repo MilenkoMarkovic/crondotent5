@@ -11,7 +11,7 @@ COPY . .
 RUN dotnet publish -c $BUILDCONFIG -o out
 
 # build runtime imagemcr.microsoft.com/dotnet/runtime:6.0
-FROM  
+FROM  mcr.microsoft.com/dotnet/runtime:6.0
 WORKDIR /app
 COPY --from=build /build/out ./
 
