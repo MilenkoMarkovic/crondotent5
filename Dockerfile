@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:5.0.0-sdk AS build
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 
 ARG BUILDCONFIG=RELEASE
 
@@ -10,8 +10,8 @@ RUN dotnet restore
 COPY . .
 RUN dotnet publish -c $BUILDCONFIG -o out
 
-# build runtime image
-FROM microsoft/dotnet:5.0.0-runtime 
+# build runtime imagemcr.microsoft.com/dotnet/runtime:6.0
+FROM  
 WORKDIR /app
 COPY --from=build /build/out ./
 
